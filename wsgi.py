@@ -6,13 +6,19 @@ application = app
 
 import actions
 
+CSS = """
+<link href="https://unpkg.com/basscss@8.0.2/css/basscss.min.css" rel="stylesheet">
+<div class="clearfix"></div>
+<div class="max-width-4 mx-auto"><br>
+"""
+
 @app.route("/")
 def index():
-    return "Hello"
+    return CSS + "Hello"
 
 @app.route("/test")
 def testpage():
-    return "Test for %s, logged-%s." % (
+    return CSS +  "Test for %s, logged-%s." % (
         escape(os.environ.get('APP_MAIN_USER','user')),
         'in' if 'password' in session else 'out'
         )
@@ -31,7 +37,7 @@ def post():
 
         return redirect(url_for('post'))
 
-    return '''
+    return CSS + '''
         <form method="post">
             <textarea name="message" rows="3" cols="40"></textarea>
             <p><input type=submit value=Send>
@@ -46,7 +52,7 @@ def login():
             return redirect(url_for('index'))
         else:
             abort(401)
-    return '''
+    return CSS + '''
         <form method="post">
             <p><input type=text name=username>
             <p><input type=password name=password>

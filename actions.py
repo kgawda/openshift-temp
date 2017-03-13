@@ -3,12 +3,15 @@ import requests, datetime
 def action1(user, password, blogURL, message):
 
     data = {
-            "subject": "Test post...", "type": "post",
+            "subject": "Automatic post test...", "type": "post",
             "content": {
                 "type": "text/html",
-                "text": "<p>This is <b>scripted post</b>.<p>%s<p>Sent at %s" % (message, datetime.datetime.now())
+                "text": """<p>%s
+                           <p>This is <b>test post</b>.
+                           <p>Sent by script at %s""" %
+                           (message, datetime.datetime.now())
             }}
 
     r = requests.post(blogURL, auth=(user, password), json=data)
 
-    return r.status_code, r.text[:100]
+    return r.status_code, r.text
