@@ -1,8 +1,10 @@
 import os
-
 from flask import Flask, session, redirect, url_for, escape, request, abort
-import actions
+
 app = Flask(__name__)
+application = app
+
+import actions
 
 @app.route("/")
 def index():
