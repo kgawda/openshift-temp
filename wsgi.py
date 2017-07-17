@@ -1,5 +1,5 @@
 import os
-from flask import Flask, session, redirect, url_for, escape, request, abort
+from flask import Flask, session, redirect, url_for, escape, request, abort, send_file
 
 app = Flask(__name__)
 application = app
@@ -37,12 +37,7 @@ def post():
 
         return redirect(url_for('post'))
 
-    return CSS + '''
-        <form method="post">
-            <textarea name="message" rows="3" cols="40"></textarea>
-            <p><input type=submit value=Send>
-        </form>
-    '''
+    return send_file('templates/home.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
