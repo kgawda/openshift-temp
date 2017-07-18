@@ -1,4 +1,4 @@
-import requests, datetime
+import requests, timing
 
 def action1(user, password, blogURL, message):
 
@@ -9,7 +9,7 @@ def action1(user, password, blogURL, message):
                 "text": """<p>%s
                            <p>This is <b>test post</b>.
                            <p>Sent by script at %s""" %
-                           (message, datetime.datetime.now())
+                           (message, timing.time_now())
             }}
 
     r = requests.post(blogURL, auth=(user, password), json=data)
